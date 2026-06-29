@@ -30,6 +30,8 @@ let timesUp = false
 const cardsEls = document.querySelectorAll(".card")
 const startBtn = document.querySelector('#start')
 const timeEl = document.querySelector('#time')
+const cardsContainerEl = document.querySelector('#cards-container')
+const gameOverEl = document.querySelector('#game-over')
 
 /*----------------------------- Event Listeners -----------------------------*/
 cardsEls.forEach(function (cardItem, i) {
@@ -66,6 +68,7 @@ cardsEls.forEach(function (cardItem, i) {
 
 startBtn.addEventListener('click', function(){
     imgSrcArr.sort(function(){return 0.5 - Math.random()})
+  
     const runTimer = setInterval(function(){
         time -= 1
         timeEl.textContent = `${time} seconds left`
@@ -73,10 +76,13 @@ startBtn.addEventListener('click', function(){
     setTimeout(() => {
     clearInterval(runTimer)
     timesUp = true
+    cardsContainerEl.classList.add('disabled')
+    gameOverEl.classList.remove('hidden')
 }, 30000)
 if (time === 0) {
     time = 30
 }
+
     // startBtn.textContent = 'Start'
 
     // start button starts the interval again when pressed more than once before 30 secs up
@@ -86,11 +92,5 @@ if (time === 0) {
 function checkForMatch () {
     if (firstCard.src === secondCard.src) {
         return true
-    }
-}
-
-function checkWinner(){
-    if(timesUp){
-        console.log('game over')
     }
 }

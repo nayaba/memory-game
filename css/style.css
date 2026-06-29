@@ -50,3 +50,16 @@ button:hover {
 .disabled {
     pointer-events: none;
 }
+
+#game-over {
+  position: absolute;
+  margin: auto;
+  top: 39%;
+  font-size: 15dvh;
+  background-color: white;
+  padding: 5px;
+}
+
+.hidden {
+    visibility: hidden;
+}
