@@ -13,8 +13,9 @@ body {
 }
 
 .card:hover {
-    border: 2px solid red;
     cursor: pointer;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
 }
 
 button {
