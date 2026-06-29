@@ -29,6 +29,7 @@ let secondFlip = false
 
 /*------------------------ Cached Element References ------------------------*/
 const cardsEls = document.querySelectorAll(".card")
+const startBtn = document.querySelector('#start')
 
 /*----------------------------- Event Listeners -----------------------------*/
 cardsEls.forEach(function (cardItem, i) {
@@ -62,6 +63,11 @@ cardsEls.forEach(function (cardItem, i) {
     }
 
   })
+})
+
+startBtn.addEventListener('click', function(){
+    imgSrcArr.sort(function(){return 0.5 - Math.random()})
+    console.log(imgSrcArr)
 })
 
 /*-------------------------------- Functions --------------------------------*/
