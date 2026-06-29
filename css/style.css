@@ -28,7 +28,8 @@ body {
 }
 
 .card {
-    width: 15dvw;
+    width: 15dvh;
+
 }
 
 .card:hover {
