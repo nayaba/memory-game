@@ -1,8 +1,5 @@
-// create an array of elements
-// create a start button (starts timer if using one)
-
 /*-------------------------------- Constants --------------------------------*/
-// create an array of images (for SRC)
+
 const imgSrcArr = [
   "assets/cat.png",
   "assets/cupcake.png",
@@ -26,10 +23,13 @@ const imgSrcArr = [
 let firstCard = ''
 let secondCard = ''
 let secondFlip = false
+let time = 30
+let timesUp = false
 
 /*------------------------ Cached Element References ------------------------*/
 const cardsEls = document.querySelectorAll(".card")
 const startBtn = document.querySelector('#start')
+const timeEl = document.querySelector('#time')
 
 /*----------------------------- Event Listeners -----------------------------*/
 cardsEls.forEach(function (cardItem, i) {
@@ -45,8 +45,7 @@ cardsEls.forEach(function (cardItem, i) {
             firstCard = ''
             secondCard = ''
         } else {
-            // i think this is happening right away so I need setTimeout
-            setTimeout(flipCard, 1000)
+            setTimeout(flipCard, 500)
             function flipCard() {
                 firstCard.src = 'assets/card-back.png'
                 secondCard.src = 'assets/card-back.png'
@@ -61,18 +60,37 @@ cardsEls.forEach(function (cardItem, i) {
         firstCard = event.target
         secondFlip = true
     }
-
+    checkWinner()
   })
 })
 
 startBtn.addEventListener('click', function(){
     imgSrcArr.sort(function(){return 0.5 - Math.random()})
-    console.log(imgSrcArr)
+    const runTimer = setInterval(function(){
+        time -= 1
+        timeEl.textContent = `${time} seconds left`
+    }, 1000)
+    setTimeout(() => {
+    clearInterval(runTimer)
+    timesUp = true
+}, 30000)
+if (time === 0) {
+    time = 30
+}
+    // startBtn.textContent = 'Start'
+
+    // start button starts the interval again when pressed more than once before 30 secs up
 })
 
 /*-------------------------------- Functions --------------------------------*/
 function checkForMatch () {
     if (firstCard.src === secondCard.src) {
         return true
+    }
+}
+
+function checkWinner(){
+    if(timesUp){
+        console.log('game over')
     }
 }
