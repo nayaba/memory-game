@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Schoolbell&display=swap');
+
 body {
     margin: 0px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Schoolbell", cursive;
+    font-weight: 400;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -11,7 +14,8 @@ body {
 }
 
 #time {
-    min-height: 20px;
+    margin-top: 0px;
+    min-height: 23px;
 }
 
 #cards-container {
