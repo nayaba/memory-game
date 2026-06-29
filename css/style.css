@@ -62,6 +62,7 @@ button:hover {
   font-size: 15dvh;
   background-color: white;
   padding: 5px;
+  border: 1.5px solid #f7a8b8;
 }
 
 .hidden {
