@@ -21,8 +21,10 @@ body {
 #cards-container {
     background-color: white;
     padding: 4px;
+    padding-bottom: 0px;
     border: 1.5px solid #f7a8b8;
     margin: 5px;
+    border-radius: 10px;
 }
 
 .card {
@@ -61,8 +63,9 @@ button:hover {
   top: 39%;
   font-size: 15dvh;
   background-color: white;
-  padding: 5px;
+  padding: 5px 15px;
   border: 1.5px solid #f7a8b8;
+  border-radius: 10px;
 }
 
 .hidden {
