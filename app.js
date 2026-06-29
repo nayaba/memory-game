@@ -25,13 +25,14 @@ let secondCard = ''
 let secondFlip = false
 let time = 30
 let timesUp = false
+let matchesMade = 0
 
 /*------------------------ Cached Element References ------------------------*/
 const cardsEls = document.querySelectorAll(".card")
 const startBtn = document.querySelector('#start')
 const timeEl = document.querySelector('#time')
 const cardsContainerEl = document.querySelector('#cards-container')
-const gameOverEl = document.querySelector('#game-over')
+const messageEl = document.querySelector('#message')
 
 /*----------------------------- Event Listeners -----------------------------*/
 cardsEls.forEach(function (cardItem, i) {
@@ -73,7 +74,10 @@ startBtn.addEventListener('click', function(){
         cardItem.classList.remove('disabled')
         cardItem.src = 'assets/card-back.png'
     })
-    gameOverEl.classList.add('hidden')
+    messageEl.textContent = 'GAME OVER'
+    messageEl.classList.add('hidden')
+    matchesMade = 0
+    time = 30
 
     const runTimer = setInterval(function(){
         time -= 1
@@ -83,11 +87,11 @@ startBtn.addEventListener('click', function(){
     clearInterval(runTimer)
     timesUp = true
     cardsContainerEl.classList.add('disabled')
-    gameOverEl.classList.remove('hidden')
+    messageEl.classList.remove('hidden')
 }, 30000)
-if (time === 0) {
-    time = 30
-}
+// if (time === 0) {
+//     time = 30
+// }
 
     // startBtn.textContent = 'Start'
 
@@ -97,6 +101,13 @@ if (time === 0) {
 /*-------------------------------- Functions --------------------------------*/
 function checkForMatch () {
     if (firstCard.src === secondCard.src) {
+        matchesMade++
         return true
+    }
+}
+
+function checkWinner(){
+    if (matchesMade === 8) {
+        messageEl.textContent = 'YOU WIN!'
     }
 }

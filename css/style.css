@@ -51,7 +51,7 @@ button:hover {
     pointer-events: none;
 }
 
-#game-over {
+#message {
   position: absolute;
   margin: auto;
   top: 39%;
