@@ -30,3 +30,7 @@ button:hover {
     background-color: lavender;
     color: darkslateblue;
 }
+
+.disabled {
+    pointer-events: none;
+}

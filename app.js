@@ -25,6 +25,7 @@ const imgSrcArr = [
 /*-------------------------------- Variables --------------------------------*/
 let firstCard = ''
 let secondCard = ''
+let secondFlip = false
 
 /*------------------------ Cached Element References ------------------------*/
 const cardsEls = document.querySelectorAll(".card")
@@ -33,22 +34,39 @@ const cardsEls = document.querySelectorAll(".card")
 cardsEls.forEach(function (cardItem, i) {
   cardItem.addEventListener("click", function (event) {
     event.target.src = imgSrcArr[i]
-    if (firstCard) {
+    if (secondFlip) {
         secondCard = event.target
+        if (checkForMatch()) {
+            firstCard.classList.add('disabled')
+            secondCard.classList.add('disabled')
+            secondFlip = false
+            console.log(secondFlip)
+            firstCard = ''
+            secondCard = ''
+        } else {
+            // i think this is happening right away so I need setTimeout
+            setTimeout(flipCard, 1000)
+            function flipCard() {
+                firstCard.src = 'assets/card-back.png'
+                secondCard.src = 'assets/card-back.png'
+                secondFlip = false
+                firstCard = ''
+                secondCard = ''
+            }
+
+        }
+
     } else {
         firstCard = event.target
+        secondFlip = true
     }
-    checkForMatch()
-    if (firstCard && secondCard) {
-        firstCard = ''
-        secondCard = ''
-    }
+
   })
 })
 
 /*-------------------------------- Functions --------------------------------*/
 function checkForMatch () {
     if (firstCard.src === secondCard.src) {
-        console.log('its a match')
+        return true
     }
 }
