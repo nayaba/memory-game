@@ -24,7 +24,6 @@ let firstCard = ''
 let secondCard = ''
 let secondFlip = false
 let time = 30
-let timesUp = false
 let matchesMade = 0
 
 /*------------------------ Cached Element References ------------------------*/
@@ -84,18 +83,10 @@ startBtn.addEventListener('click', function(){
         timeEl.textContent = `${time} seconds left`
     }, 1000)
     setTimeout(() => {
-    clearInterval(runTimer)
-    timesUp = true
-    cardsContainerEl.classList.add('disabled')
-    messageEl.classList.remove('hidden')
-}, 30000)
-// if (time === 0) {
-//     time = 30
-// }
-
-    // startBtn.textContent = 'Start'
-
-    // start button starts the interval again when pressed more than once before 30 secs up
+        clearInterval(runTimer)
+        cardsContainerEl.classList.add('disabled')
+        messageEl.classList.remove('hidden')
+    }, 30000)
 })
 
 /*-------------------------------- Functions --------------------------------*/
@@ -109,5 +100,7 @@ function checkForMatch () {
 function checkWinner(){
     if (matchesMade === 8) {
         messageEl.textContent = 'YOU WIN!'
+        messageEl.classList.remove('hidden')
+        clearInterval(runTimer)
     }
 }
