@@ -68,7 +68,13 @@ cardsEls.forEach(function (cardItem, i) {
 
 startBtn.addEventListener('click', function(){
     imgSrcArr.sort(function(){return 0.5 - Math.random()})
-  
+    cardsContainerEl.classList.remove('disabled')
+    cardsEls.forEach(function (cardItem){
+        cardItem.classList.remove('disabled')
+        cardItem.src = 'assets/card-back.png'
+    })
+    gameOverEl.classList.add('hidden')
+
     const runTimer = setInterval(function(){
         time -= 1
         timeEl.textContent = `${time} seconds left`
