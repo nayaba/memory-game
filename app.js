@@ -15,6 +15,7 @@ const emojisArr = [
 let firstCard = ''
 let secondCard = ''
 let time = 30
+let matchesCount = 0
 
 /*------------------------ Cached Element References ------------------------*/
 const cardsEls = document.querySelectorAll(".card")
@@ -35,6 +36,11 @@ startBtn.addEventListener('click', function(){
         cardItem.textContent = ''
     })
     displayTimer()
+    cardsContainerEl.classList.remove('disabled')
+    messageEl.classList.add('hidden')
+    messageEl.textContent = 'GAME OVER'
+    timeEl.textContent.classList.remove('hidden')
+    time = 30
 })
 
 cardsEls.forEach(function(cardItem, i){
@@ -48,7 +54,7 @@ cardsEls.forEach(function(cardItem, i){
             firstCard = event.target
         }
 
-        console.log(firstCard, secondCard)
+        checkWinner()
     })
 })
 
@@ -61,6 +67,7 @@ function checkMatch(){
         secondCard.classList.add('disabled')
         firstCard = ''
         secondCard = ''
+        matchesCount++
     } else {
         // need setTimeout so we can see the card displayed for a bit
         setTimeout(flipCard, 500)
@@ -84,4 +91,12 @@ function displayTimer(){
         cardsContainerEl.classList.add('disabled')
         messageEl.classList.remove('hidden')
     }, 30000)
+}
+
+function checkWinner(){
+    if (matchesCount === 8) {
+        messageEl.textContent = 'YOU WIN!'
+        messageEl.classList.remove('hidden')
+        timeEl.textContent.classList.add('hidden')
+    }
 }
