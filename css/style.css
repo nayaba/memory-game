@@ -62,9 +62,11 @@ button:hover {
 
 .disabled {
     pointer-events: none;
-    opacity: 0.6;
-    filter: alpha(opacity=30);
+    /* opacity: 0.6; */
+    /* filter: alpha(opacity=30); */
 }
+
+
 
 #message {
   position: absolute;

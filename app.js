@@ -14,6 +14,7 @@ const emojisArr = [
 /*-------------------------------- Variables --------------------------------*/
 let firstCard = ''
 let secondCard = ''
+let time = 30
 
 /*------------------------ Cached Element References ------------------------*/
 const cardsEls = document.querySelectorAll(".card")
@@ -33,6 +34,7 @@ startBtn.addEventListener('click', function(){
         cardItem.classList.remove('disabled')
         cardItem.textContent = ''
     })
+    displayTimer()
 })
 
 cardsEls.forEach(function(cardItem, i){
@@ -70,4 +72,16 @@ function checkMatch(){
         }
     }
 
+}
+
+function displayTimer(){
+    const runTimer = setInterval(function(){
+        time -= 1
+        timeEl.textContent = `${time} seconds left`
+    }, 1000)
+    setTimeout(() => {
+        clearInterval(runTimer)
+        cardsContainerEl.classList.add('disabled')
+        messageEl.classList.remove('hidden')
+    }, 30000)
 }
