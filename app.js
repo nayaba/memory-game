@@ -24,6 +24,11 @@ const messageEl = document.querySelector('#message')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
+startBtn.addEventListener('click', function(){
+    // simple shuffle of emoji array to start the game
+    emojisArr.sort(function(){return 0.5 - Math.random()})
+})
+
 cardsEls.forEach(function(cardItem, i){
     cardItem.addEventListener('click', function(event){
         event.target.textContent = emojisArr[i]
