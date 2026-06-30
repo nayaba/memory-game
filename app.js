@@ -45,7 +45,17 @@ cardsEls.forEach(function(cardItem, i){
 function checkMatch(){
     if(firstCard.textContent === secondCard.textContent) {
         console.log('its a match')
+        firstCard = ''
+        secondCard = ''
+    } else {
+        // need setTimeout so we can see the card displayed for a bit
+        setTimeout(flipCard, 500)
+        function flipCard(){
+            firstCard.textContent = ''
+            secondCard.textContent = ''
+            firstCard = ''
+            secondCard = ''
+        }
     }
-    firstCard = ''
-    secondCard = ''
+
 }
