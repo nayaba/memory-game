@@ -27,6 +27,12 @@ const messageEl = document.querySelector('#message')
 startBtn.addEventListener('click', function(){
     // simple shuffle of emoji array to start the game
     emojisArr.sort(function(){return 0.5 - Math.random()})
+    firstCard = ''
+    secondCard = ''
+    cardsEls.forEach(function(cardItem){
+        cardItem.classList.remove('disabled')
+        cardItem.textContent = ''
+    })
 })
 
 cardsEls.forEach(function(cardItem, i){
