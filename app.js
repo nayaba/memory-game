@@ -1,30 +1,19 @@
 /*-------------------------------- Constants --------------------------------*/
 
-const imgSrcArr = [
-  "assets/cat.png",
-  "assets/cupcake.png",
-  "assets/duck.png",
-  "assets/flower.png",
-  "assets/moon.png",
-  "assets/rainbow.png",
-  "assets/star.png",
-  "assets/strawberry.png",
-  "assets/cat.png",
-  "assets/cupcake.png",
-  "assets/duck.png",
-  "assets/flower.png",
-  "assets/moon.png",
-  "assets/rainbow.png",
-  "assets/star.png",
-  "assets/strawberry.png",
+const emojisArr = [
+    '🌸', '🌸',
+    '🍓', '🍓',
+    '🐱', '🐱',
+    '🧁', '🧁',
+    '🌙', '🌙',
+    '⭐', '⭐',
+    '🧋', '🧋',
+    '🎀', '🎀'
 ]
 
 /*-------------------------------- Variables --------------------------------*/
 let firstCard = ''
 let secondCard = ''
-let secondFlip = false
-let time = 30
-let matchesMade = 0
 
 /*------------------------ Cached Element References ------------------------*/
 const cardsEls = document.querySelectorAll(".card")
@@ -34,73 +23,23 @@ const cardsContainerEl = document.querySelector('#cards-container')
 const messageEl = document.querySelector('#message')
 
 /*----------------------------- Event Listeners -----------------------------*/
-cardsEls.forEach(function (cardItem, i) {
-  cardItem.addEventListener("click", function (event) {
-    event.target.src = imgSrcArr[i]
-    if (secondFlip) {
-        secondCard = event.target
-        if (checkForMatch()) {
-            firstCard.classList.add('disabled')
-            secondCard.classList.add('disabled')
-            secondFlip = false
-            console.log(secondFlip)
-            firstCard = ''
-            secondCard = ''
-        } else {
-            setTimeout(flipCard, 500)
-            function flipCard() {
-                firstCard.src = 'assets/card-back.png'
-                secondCard.src = 'assets/card-back.png'
-                secondFlip = false
-                firstCard = ''
-                secondCard = ''
-            }
 
+cardsEls.forEach(function(cardItem, i){
+    cardItem.addEventListener('click', function(event){
+        event.target.textContent = emojisArr[i]
+
+        if (firstCard){
+            secondCard = event.target
+            // run check match function
+        } else {
+            firstCard = event.target
         }
 
-    } else {
-        firstCard = event.target
-        secondFlip = true
-    }
-    checkWinner()
-  })
-})
-
-startBtn.addEventListener('click', function(){
-    imgSrcArr.sort(function(){return 0.5 - Math.random()})
-    cardsContainerEl.classList.remove('disabled')
-    cardsEls.forEach(function (cardItem){
-        cardItem.classList.remove('disabled')
-        cardItem.src = 'assets/card-back.png'
+        console.log(firstCard, secondCard)
     })
-    messageEl.textContent = 'GAME OVER'
-    messageEl.classList.add('hidden')
-    matchesMade = 0
-    time = 30
-
-    const runTimer = setInterval(function(){
-        time -= 1
-        timeEl.textContent = `${time} seconds left`
-    }, 1000)
-    setTimeout(() => {
-        clearInterval(runTimer)
-        cardsContainerEl.classList.add('disabled')
-        messageEl.classList.remove('hidden')
-    }, 30000)
 })
 
 /*-------------------------------- Functions --------------------------------*/
-function checkForMatch () {
-    if (firstCard.src === secondCard.src) {
-        matchesMade++
-        return true
-    }
-}
 
-function checkWinner(){
-    if (matchesMade === 8) {
-        messageEl.textContent = 'YOU WIN!'
-        messageEl.classList.remove('hidden')
-        clearInterval(runTimer)
-    }
-}
+// check match function should compare cards, then reset them to empty strings
+
