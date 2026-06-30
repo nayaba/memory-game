@@ -30,7 +30,7 @@ cardsEls.forEach(function(cardItem, i){
 
         if (firstCard){
             secondCard = event.target
-            // run check match function
+            checkMatch()
         } else {
             firstCard = event.target
         }
@@ -42,4 +42,10 @@ cardsEls.forEach(function(cardItem, i){
 /*-------------------------------- Functions --------------------------------*/
 
 // check match function should compare cards, then reset them to empty strings
-
+function checkMatch(){
+    if(firstCard.textContent === secondCard.textContent) {
+        console.log('its a match')
+    }
+    firstCard = ''
+    secondCard = ''
+}
