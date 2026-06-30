@@ -49,7 +49,8 @@ cardsEls.forEach(function(cardItem, i){
 // check match function should compare cards, then reset them to empty strings
 function checkMatch(){
     if(firstCard.textContent === secondCard.textContent) {
-        console.log('its a match')
+        firstCard.classList.add('disabled')
+        secondCard.classList.add('disabled')
         firstCard = ''
         secondCard = ''
     } else {
